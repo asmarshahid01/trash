@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import {React, useState} from 'react'
 import './App.css';
+import Form from './Form';
+import laptopImg from './laptop.jpg'
 
 function App() {
+
+  const [tempApply, setTempApply] = useState(false);
+  const [apply, setApply] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {apply ? <Form /> :
+      <div className='imgContainer'>
+        <img className='laptopImg' src={laptopImg} alt='laptop' />
+        <div className='overlay'></div>
+        <p className='applyLaptopHead'>Laptop Scheme for</p>
+        <p className='stdtspak'>Students of Pakistan</p>
+        {tempApply ? <div className='options'>
+          <button className='apply-one' onClick={()=>setApply(true)}>Apply using Instagram</button>
+          <button className='not-apply'>Apply using Discord</button>
+        </div> : <button className='apply' onClick={()=>setTempApply(true)}>Apply for laptop</button>}
+      </div>}
     </div>
   );
 }
